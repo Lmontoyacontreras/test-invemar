@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+{% load static from staticfiles %}
+
+{% block link %}{% endblock %}
+
+{% block contect %}
+    <hr>
+    <h1>Listado Especies
+        <div class="float-right">
+            <a type="button" class="btn btn-primary" href="{% url 'Especies:EspeciesAdd' %}" >Nuevo</a>
+        </div>
+    </h1>
+    <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Familia</th>
+              <th scope="col">Nombre Comun</th>
+              <th scope="col">Nombre Cientifico</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for especie in especies %}
+            <tr>
+              <th scope="row">{{ especie.id }}</th>
+              <td>{{ especie.especieNOMBRECOMUN }}</td>
+              <td>{{ especie.especieNOMBRECIENTIFICO }}</td>
+              <td>{{ especie.especieFamiliaID }}</td>
+              <th><a type="button" class="btn btn-primary"href="{% url 'Especies:EspeciesEdit' especie.pk %}" >Edit</a></th>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  menuActive('especies');
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+
+{% load static from staticfiles %}
+
+{% block link %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+{% endblock %}
+
+{% block contect %}
+    <hr>
+    <h1>Listado Especies
+        <div class="float-right">
+            <a type="button" class="btn btn-primary" href="{% url 'Avistamientos:AvistamientosAdd' %}" >Nuevo</a>
+        </div>
+    </h1>
+    <table class="table" id="tableavistamiento">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Lugar</th>
+              <th scope="col">Especie</th>
+              <th scope="col">Latitud</th>
+              <th scope="col">Longitud</th>
+              <th scope="col">Autor</th>
+              <th scope="col">Observaciones</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for avistamiento in avistamientos %}
+            <tr>
+              <th scope="row">{{ avistamiento.id }}</th>
+              <td>{{ avistamiento.lugarID }}</td>
+              <td>{{ avistamiento.especieID }}</td>
+              <td>{{ avistamiento.avistamientoLATITUD }}</td>
+              <td>{{ avistamiento.avistamientoLONGITUD }}</td>
+              <td>{{ avistamiento.avistamientoAUTOR }}</td>
+              <td>{{ avistamiento.avistamientoOBSERVACIONES }}</td>
+              <th><a type="button" class="btn btn-primary"href="{% url 'Avistamientos:AvistamientosEdit' avistamiento.pk %}" >Edit</a></th>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  menuActive('avistamientos');
+  
+  $(document).ready( function () {
+    $('#tableavistamiento').DataTable();
+} );
+</script>
+{% endblock %}

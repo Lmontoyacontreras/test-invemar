@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% load static from staticfiles %}
+
+{% block link %}{% endblock %}
+
+{% block contect %}
+    <hr>
+    <h1>Formulario de Lugar
+    </h1>
+     <div class="col-md-12">
+          <form method="POST">
+          {% csrf_token %}
+          <div>
+              <div class="panel-body">
+                  <div class="form-group">
+                  <label class="col control-label">Nombre<span class="asterisk">*</span></label>
+                  <div class="col">
+                    {{ form.lugarTITULO }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col control-label">Alias<span class="asterisk">*</span></label>
+                  <div class="col">
+                    {{ form.lugarALIAS }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col control-label">Departamento <span class="asterisk">*</span></label>
+                  <div class="col">
+                    {{ form.departamentoID }}
+                  </div>
+                </div>
+              </div><!-- panel-body -->
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col col-sm-offset-3">
+                    <button class="btn btn-primary" onclick="this.disabled=true,this.form.submit();">Guardar</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                  </div>
+                </div>
+              </div><!-- panel -->
+          </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  menuActive('lugares');
+</script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+{% load static from staticfiles %}
+
+{% block link %}{% endblock %}
+
+{% block contect %}
+    <hr>
+    <h1>Listado
+        <div class="float-right">
+            <a type="button" class="btn btn-primary" href="{% url 'Lugares:LugaresAdd' %}" >Nuevo</a>
+        </div>
+    </h1>
+    <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Departamento</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Alias</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for lugar in lugares %}
+            <tr>
+              <th scope="row">{{ lugar.id }}</th>
+              <td>{{ lugar.departamentoID }}</td>
+              <td>{{ lugar.lugarTITULO }}</td>
+              <td>{{ lugar.lugarALIAS }}</td>
+              <th><a type="button" class="btn btn-primary"href="{% url 'Lugares:LugaresEdit' lugar.pk %}" >Edit</a></th>
+            </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  menuActive('lugares');
+</script>
+{% endblock %}
